@@ -4,8 +4,8 @@ FROM bellsoft/liberica-openjdk-alpine:18.0.2
 # Install MySQL server
 RUN apk update && apk add --no-cache mysql mysql-client
 
-# Create MySQL data directory and set correct permissions
-RUN mkdir /var/lib/mysql && chown -R mysql:mysql /var/lib/mysql
+# Create MySQL data directory and set correct permissions using root privileges
+RUN mkdir -p /var/lib/mysql && chown -R mysql:mysql /var/lib/mysql
 
 # Initialize MySQL database
 RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql
